@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>Studio Transition: Desktop to Web | Serena Yang</title>
+<meta name="description" content="Measured the usability gap in a tool's move from desktop to web: the web version scored 31 to 37 points lower.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  /* Concept: bold type on a cool paper ground; every case study gets its own colour world; the findings themselves are the artwork. */
+  :root {
+    --paper: #F2F3F7; --card: #FFFFFF; --ink: #10132A; --muted: #4F5570; --line: #D9DCE8;
+    --indigo: #5B5BF0; --coral: #FF6B57; --sun: #FFC83D; --mint: #27C3A0;
+    --link: #3D3DD6;
+    --b1-bg: #E7E6FF; --b1-fg: #17164F; --b1-accent: #5B5BF0; --b1-soft: #C9C8FF;
+    --b2-bg: #12142A; --b2-fg: #F3F4FA; --b2-accent: #38D9B0; --b2-soft: #2A2E52; --b2-hot: #FF7A66;
+    --b3-bg: #FFEFC2; --b3-fg: #3A2400; --b3-accent: #E4572E; --b3-soft: #FFD98A;
+    --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-head: "Space Grotesk", "Inter", system-ui, sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #0E1020; --card: #171A30; --ink: #F1F2FA; --muted: #A9AEC8; --line: #2A2E4A;
+      --link: #9C9CFF;
+      --b1-bg: #1C1B52; --b1-fg: #ECECFF; --b1-accent: #9C9CFF; --b1-soft: #34338A;
+      --b3-bg: #3A2E0C; --b3-fg: #FFF1CF; --b3-accent: #FF9A74; --b3-soft: #5A4614;
+      color-scheme: dark;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 17px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+  a { color: var(--link); text-underline-offset: 3px; }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--indigo); outline-offset: 3px; border-radius: 6px; }
+  h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.12; margin: 0; text-wrap: balance; letter-spacing: -.015em; }
+  p { margin: 0 0 1rem; max-width: 65ch; }
+  .in { max-width: 70rem; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+  .eyebrow { font-family: var(--font-mono); font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+
+  /* top bar */
+  .top { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); padding-top: env(safe-area-inset-top, 0px); }
+  .top .in { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding-block: .7rem; }
+  .logo { display: inline-flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--ink); font-family: var(--font-head); font-weight: 700; }
+  .logo i { width: 1.9rem; height: 1.9rem; border-radius: 50%; background: conic-gradient(var(--coral) 0 33%, var(--sun) 0 66%, var(--indigo) 0); display: inline-block; }
+  .nav { display: flex; gap: 1.2rem; flex-wrap: wrap; font-size: .96rem; }
+  .nav a { color: var(--ink); text-decoration: none; font-weight: 500; padding-block: .2rem; border-bottom: 2px solid transparent; }
+  .nav a:hover { border-bottom-color: var(--coral); }
+
+  /* hero */
+  .hero { position: relative; overflow: hidden; padding-block: clamp(3.5rem, 9vw, 7rem) clamp(3rem, 7vw, 5rem); }
+  .hero h1 { font-size: clamp(3.2rem, 12.5vw, 8.5rem); font-weight: 700; letter-spacing: -.045em; line-height: .95; position: relative; z-index: 2; }
+  .hero .role { font-family: var(--font-head); font-size: clamp(1.1rem, 2.6vw, 1.6rem); font-weight: 500; margin: 1.1rem 0 0; position: relative; z-index: 2; color: var(--muted); max-width: none; }
+  .shape { position: absolute; z-index: 1; animation: drift 9s ease-in-out infinite; }
+  .s1 { right: 8%; top: 12%; width: clamp(4rem, 12vw, 8rem); animation-duration: 10s; }
+  .s2 { right: 30%; top: 4%; width: clamp(2.2rem, 6vw, 4rem); animation-duration: 8s; animation-delay: -3s; }
+  .s3 { right: 3%; bottom: 14%; width: clamp(2.6rem, 7vw, 4.6rem); animation-duration: 11s; animation-delay: -5s; }
+  .s4 { right: 24%; bottom: 8%; width: clamp(1.8rem, 4vw, 3rem); animation-duration: 7s; animation-delay: -2s; }
+  @keyframes drift { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-14px) rotate(6deg); } }
+  .cue { display: inline-flex; align-items: center; gap: .6rem; margin-top: 2.6rem; font-family: var(--font-mono); font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); text-decoration: none; position: relative; z-index: 2; }
+
+  .lead { padding-block: 1rem 3.5rem; }
+  .lead p:first-child { font-family: var(--font-head); font-size: clamp(1.35rem, 3vw, 1.9rem); line-height: 1.35; font-weight: 500; max-width: 44ch; }
+  .lead p { max-width: 62ch; }
+
+  /* showcase bands */
+  .band { padding-block: clamp(3.5rem, 8vw, 6rem); background: var(--b-bg); color: var(--b-fg); }
+  .b1 { --b-bg: var(--b1-bg); --b-fg: var(--b1-fg); --b-accent: var(--b1-accent); --b-soft: var(--b1-soft); }
+  .b2 { --b-bg: var(--b2-bg); --b-fg: var(--b2-fg); --b-accent: var(--b2-accent); --b-soft: var(--b2-soft); }
+  .b3 { --b-bg: var(--b3-bg); --b-fg: var(--b3-fg); --b-accent: var(--b3-accent); --b-soft: var(--b3-soft); }
+  .band-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: clamp(2rem, 6vw, 5rem); align-items: center; }
+  .nbig { font-family: var(--font-head); font-weight: 700; font-size: clamp(3.4rem, 10vw, 6.5rem); line-height: .9; color: var(--b-accent); letter-spacing: -.04em; margin-bottom: 1rem; }
+  .band h2 { font-size: clamp(1.9rem, 4.6vw, 3.1rem); margin-bottom: 1.1rem; }
+  .band p.teaser { font-size: 1.08rem; max-width: 46ch; opacity: .92; }
+  .btn { display: inline-flex; align-items: center; gap: .6rem; margin-top: .8rem; padding: .85rem 1.4rem; border: 2px solid currentColor; border-radius: 999px; color: inherit; text-decoration: none; font-weight: 600; font-family: var(--font-head); transition: background .2s, color .2s, transform .2s; }
+  .btn:hover { background: var(--b-fg); color: var(--b-bg); transform: translateX(3px); }
+
+  /* graphics made from the findings */
+  .viz { background: color-mix(in srgb, var(--b-fg) 7%, transparent); border-radius: 22px; padding: clamp(1.2rem, 3vw, 2rem); }
+  .viz figcaption { font-size: .9rem; margin-top: 1.2rem; opacity: .85; max-width: none; }
+  figure.viz { margin: 0; }
+  .dots { display: flex; gap: clamp(.5rem, 2vw, 1rem); justify-content: center; padding-block: 1.5rem; }
+  .dots span { width: clamp(2.4rem, 8vw, 4.2rem); aspect-ratio: 1; border-radius: 50%; background: var(--b-accent); }
+  .dots span.off { background: transparent; border: 3px dashed var(--b-accent); }
+  .big { font-family: var(--font-head); font-weight: 700; font-size: clamp(2.8rem, 8vw, 4.6rem); line-height: 1; text-align: center; letter-spacing: -.03em; }
+  .bars { display: flex; align-items: flex-end; justify-content: space-around; gap: 1rem; height: 15rem; padding-top: 1rem; }
+  .bars div { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; height: 100%; min-width: 0; }
+  .bars b { font-family: var(--font-head); font-size: clamp(1.4rem, 4vw, 2rem); margin-bottom: .3rem; }
+  .bars i { display: block; width: min(100%, 5.5rem); height: calc(var(--v) * 1%); background: var(--b-accent); border-radius: 12px 12px 4px 4px; }
+  .bars div:nth-child(2) i { background: var(--b2-hot); }
+  .bars small { margin-top: .6rem; font-size: .8rem; text-align: center; opacity: .85; }
+  .pair { display: grid; gap: .45rem; margin-bottom: 1.4rem; }
+  .pair:last-of-type { margin-bottom: 0; }
+  .pair h4 { font-size: 1rem; }
+  .row { display: grid; grid-template-columns: 4.5rem 1fr 3rem; align-items: center; gap: .7rem; font-size: .88rem; }
+  .row .track { height: 1.1rem; background: color-mix(in srgb, var(--b-fg) 10%, transparent); border-radius: 999px; overflow: hidden; }
+  .row .fill { display: block; height: 100%; width: calc(var(--v) * 1%); background: var(--b-accent); border-radius: 999px; }
+  .row.web .fill { background: var(--b3-accent); }
+  .row b { font-variant-numeric: tabular-nums; text-align: right; }
+  .gap { display: inline-block; justify-self: start; font-family: var(--font-mono); font-size: .8rem; background: var(--b3-accent); color: #fff; padding: .15rem .6rem; border-radius: 999px; }
+
+  /* sections */
+  .section { padding-block: clamp(3.5rem, 8vw, 6rem); }
+  .section h2.big-h { font-size: clamp(2.2rem, 6vw, 4rem); margin-bottom: 1.5rem; letter-spacing: -.03em; }
+  .more-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: 1rem; margin-top: 2rem; padding: 0; list-style: none; }
+  .more-grid li { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 1.3rem 1.4rem; display: grid; gap: .5rem; align-content: start; transition: transform .2s, box-shadow .2s; }
+  .more-grid li:hover { transform: translateY(-4px); box-shadow: 0 14px 30px -18px rgba(16,19,42,.5); }
+  .more-grid li:nth-child(4n+1) { border-top: 5px solid var(--indigo); }
+  .more-grid li:nth-child(4n+2) { border-top: 5px solid var(--coral); }
+  .more-grid li:nth-child(4n+3) { border-top: 5px solid var(--sun); }
+  .more-grid li:nth-child(4n) { border-top: 5px solid var(--mint); }
+  .more-grid strong { font-family: var(--font-head); font-size: 1.15rem; }
+  .more-grid span { color: var(--muted); font-size: .96rem; }
+  .about { background: var(--card); border-block: 1px solid var(--line); }
+  .about .col { max-width: 46rem; }
+  .about h4 { font-size: 1.1rem; margin: 2rem 0 .5rem; }
+  .xp { list-style: none; padding: 0; margin: .5rem 0 1.5rem; display: grid; gap: 1.1rem; }
+  .xp li { display: grid; gap: .1rem; padding-left: 1.1rem; border-left: 4px solid var(--indigo); }
+  .xp li:nth-child(2) { border-left-color: var(--coral); }
+  .xp li:nth-child(3) { border-left-color: var(--sun); }
+  .xp li:nth-child(4) { border-left-color: var(--mint); }
+  .xp .when { font-family: var(--font-mono); font-size: .8rem; color: var(--muted); }
+  .contact { background: var(--b2-bg); color: var(--b2-fg); text-align: left; }
+  .contact h2 { font-size: clamp(2.4rem, 8vw, 5.5rem); letter-spacing: -.04em; margin-bottom: 1.2rem; }
+  .contact p { font-size: 1.15rem; }
+  .contact a.pill { display: inline-flex; margin-top: .6rem; padding: .9rem 1.6rem; border-radius: 999px; background: var(--sun); color: #1d1500; text-decoration: none; font-weight: 700; font-family: var(--font-head); transition: transform .2s; }
+  .contact a.pill:hover { transform: translateY(-3px); }
+  footer.site { padding-block: 1.6rem 2.2rem; color: var(--muted); font-size: .9rem; }
+
+  /* case study pages */
+  .chead { padding-block: clamp(2.5rem, 6vw, 4.5rem); background: var(--b-bg); color: var(--b-fg); }
+  .chead .back a { color: inherit; font-weight: 500; }
+  .chead h1 { font-size: clamp(2.1rem, 5.8vw, 4rem); letter-spacing: -.035em; margin: 1.3rem 0 2rem; max-width: 20ch; }
+  .chead .band-grid { align-items: end; }
+  .chead .nbig { margin-bottom: .6rem; font-size: clamp(2.6rem, 7vw, 4.5rem); }
+  .case { padding-block: clamp(2.5rem, 6vw, 4rem); }
+  .case .wrap { max-width: 46rem; margin: 0; }
+  .case h3 { font-size: clamp(1.5rem, 3vw, 2rem); margin: 3rem 0 .9rem; padding-top: 1.6rem; border-top: 1px solid var(--line); }
+  .case h3::before { content: ""; display: block; width: 2.6rem; height: .35rem; border-radius: 99px; background: var(--b-accent); margin-bottom: .9rem; }
+  .case h4 { font-size: 1.1rem; margin: 1.6rem 0 .4rem; }
+  .case ul { padding-left: 1.2rem; max-width: 65ch; }
+  .case li { margin-bottom: .6rem; }
+  .meta { display: grid; gap: 1rem; margin: 1.6rem 0 1.4rem; padding: 1.2rem 1.4rem; background: var(--card); border: 1px solid var(--line); border-radius: 18px; }
+  .meta dt { font-family: var(--font-mono); font-size: .74rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
+  .meta dd { margin: .2rem 0 0; }
+  .strategy { border-left: 5px solid var(--b-accent); padding: .2rem 0 .2rem 1.1rem; margin: .6rem 0 1.2rem; max-width: 65ch; }
+  .tablewrap { overflow-x: auto; margin: 1.2rem 0 1.4rem; border: 1px solid var(--line); border-radius: 18px; background: var(--card); }
+  table { border-collapse: collapse; width: 100%; font-size: .96rem; min-width: 30rem; }
+  th, td { text-align: left; padding: .8rem 1rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-family: var(--font-mono); font-weight: 500; font-size: .74rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); }
+  tr:last-child td { border-bottom: 0; }
+  td.num, th.num { font-variant-numeric: tabular-nums; }
+  .note { color: var(--muted); font-size: .92rem; }
+  .next { padding-block: 2.5rem 4rem; border-top: 1px solid var(--line); }
+  .next .links { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
+  .next .links a { padding: .8rem 1.2rem; border: 2px solid var(--ink); border-radius: 999px; color: var(--ink); text-decoration: none; font-weight: 600; font-family: var(--font-head); }
+  .next .links a:hover { background: var(--ink); color: var(--paper); }
+
+  @media (max-width: 52rem) { .band-grid { grid-template-columns: minmax(0, 1fr); } .shape.s2, .shape.s4 { display: none; } }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .shape { animation: none; } .btn, .more-grid li, .contact a.pill { transition: none; } }
+</style>
+</head>
+<body>
+<header class="top"><div class="in"><a class="logo" href="index.html"><i aria-hidden="true"></i>Serena Yang</a><nav class="nav" aria-label="Sections"><a href="index.html#work">Work</a><a href="index.html#more-work">More work</a><a href="index.html#about">About</a><a href="index.html#contact">Contact</a></nav></div></header>
+<main>
+<section class="chead b3"><div class="in"><p class="back"><a href="index.html#work">&larr; All case studies</a></p><div class="band-grid"><div><div class="nbig">03</div><p class="eyebrow" style="color:inherit;opacity:.8">Case study</p><h1>Studio Transition: Benchmarking a Critical Desktop-to-Web Migration</h1></div><figure class="viz" role="img" aria-label="Usability scores out of 100. Internal users: desktop 83.8, web 46.8. Customers: desktop 78.2, web 47.6."><div class="pair"><h4>Internal users (n=42)</h4><div class="row"><span>Desktop</span><span class="track"><span class="fill" style="--v:83.8"></span></span><b>83.8</b></div><div class="row web"><span>Web</span><span class="track"><span class="fill" style="--v:46.8"></span></span><b>46.8</b></div><span class="gap">gap: 37 points</span></div><div class="pair"><h4>Customers (n=67)</h4><div class="row"><span>Desktop</span><span class="track"><span class="fill" style="--v:78.2"></span></span><b>78.2</b></div><div class="row web"><span>Web</span><span class="track"><span class="fill" style="--v:47.6"></span></span><b>47.6</b></div><span class="gap">gap: 31 points</span></div><figcaption>Usability scores, 0 to 100, same people rating both versions.</figcaption></figure></div></div></section>
+<div class="body-b3" style="--b-accent:var(--b3-accent)"><article class="in case" id="studio">
+  <div class="wrap" style="margin:0">
+    <p>I designed a quantitative benchmarking framework that quantified the usability deficit of an enterprise tool moving from desktop to a cloud-based web application. By deploying a validated, lean usability scale, I measured that the web application fell 31 to 37 points below the desktop legacy tool, giving product leadership a baseline for evaluating customer retention risks before deprecation.</p>
+    <dl class="meta">
+      <div><dt>Project scope</dt><dd>Enterprise B2B SaaS orchestration studio migration (Phase 1 Benchmarking).</dd></div>
+      <div><dt>My role</dt><dd>Quantitative UX Researcher (Survey architecture, statistical analysis, correlation testing, readouts).</dd></div>
+      <div><dt>Key outcome</dt><dd>Established an objective usability baseline that unified internal and external feedback, and a template for how to measure products in transition.</dd></div>
+    </dl>
+
+    <h3>The Challenge &amp; Question</h3>
+    <p>The product organization was actively working toward retiring its legacy desktop scripting studio in favor of a modern web version. While the team knew anecdotally that customers were struggling with the transition, they lacked an objective, standardized metric to measure the severity of the friction.</p>
+    <p>I set out to answer a multi-layered question: How wide is the usability gap between the two architectures, which specific user cohorts feel it most acutely, and what structural gaps are driving the deficit?</p>
+
+    <h3>Strategic Decisions That Shaped the Work</h3>
+    <h4>Implementing a rigorous, within-subjects research design</h4>
+    <p>To reduce confounding variables, I structured the survey so that the exact same individuals evaluated both product versions.</p>
+    <p class="strategy"><strong>The Strategy:</strong> This approach supported reading the 30+ point drop as a genuine disparity in user experience between the architectures, rather than demographic or sample variance.</p>
+    <h4>Leveraging a lean, validated industry standard (UMUX)</h4>
+    <p>I deployed a four-item Usability Metric for User Experience (UMUX) framework, normalizing the results to a widely understood 0–100 scale.</p>
+    <p class="strategy"><strong>The Strategy:</strong> This kept the survey short for respondents. I paired this with targeted open-text fields to immediately capture the qualitative context behind the quantitative scores.</p>
+    <h4>Comparative benchmarking across internal and external cohorts</h4>
+    <p>I intentionally sampled two highly distinct user groups: external customers and internal users, mostly engineers with deep scripting expertise.</p>
+    <p class="strategy"><strong>The Strategy:</strong> Both expert internal power users and external customers landing in nearly the same place on the web application suggests the friction isn't only an enablement or onboarding issue.</p>
+
+    <h3>Key Discoveries &amp; Quantitative Benchmarks</h3>
+    <p>The benchmark scores revealed a clear performance gap when compared with the reference range of roughly 60 to 70 cited in the readout for enterprise software:</p>
+    <div class="tablewrap" tabindex="0" role="region" aria-label="Usability scores by cohort">
+      <table>
+        <thead><tr><th>User cohort</th><th class="num">Legacy desktop score</th><th class="num">Cloud web score</th><th class="num">Usability deficit</th></tr></thead>
+        <tbody>
+          <tr><td>Internal users (n=42)</td><td class="num">83.8</td><td class="num">46.8</td><td class="num">-37 points</td></tr>
+          <tr><td>Enterprise Customers (n=67)</td><td class="num">78.2</td><td class="num">47.6</td><td class="num">-31 points</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Web scores strictly exclude 14 customer respondents who had not yet initiated their web transition.</p>
+    <h4>Core Migration Risk Signals</h4>
+    <ul>
+      <li><strong>High Friction for Early Adopters:</strong> Among customers who actively attempted the migration, 57% rated the process as difficult or very difficult.</li>
+      <li><strong>Low Migration Velocity:</strong> 22% of the customers surveyed had not yet started the transition process at all, a friction point for the planned deprecation timeline.</li>
+      <li><strong>Tenure is Not a Buffer:</strong> Correlation testing found that an agent or admin's tenure was not significantly correlated with migration difficulty.</li>
+      <li><strong>Feature Parity vs. Enablement:</strong> Qualitative analysis revealed that missing core functionality was the primary reason users regressed to the desktop application. However, a secondary "enablement gap" around training was identified—suggesting that some friction could be mitigated via documentation independently of the core engineering roadmap.</li>
+    </ul>
+
+    <h3>The Strategic Pivot &amp; Impact</h3>
+    <p>While immediate engineering resources were ultimately shifted toward high-priority AI initiatives, we positioned this quantitative framework as a use case for our emerging Design Ops practice.</p>
+    <p>The study provided product managers with risk-mapped evidence of our product gaps and confirmed several of their pain points. Furthermore, the plan was to use this study as an example of how to measure and compare experiences, and as a template for future benchmarks of product transitions, deprecations, and legacy migrations.</p>
+
+    <h3>Methodological Boundaries &amp; Self-Critique</h3>
+    <p>To maintain absolute data integrity for future testing cycles, I called out several structural realities in our baseline snapshot:</p>
+    <ul>
+      <li><strong>Expert Skew:</strong> The internal group was heavily weighted toward expert power-users, which likely inflated the baseline scores for the legacy desktop application.</li>
+      <li><strong>The Untested Cohort:</strong> The 14 customers who had not yet logged into the web version were excluded from web calculations, meaning the web average may lean slightly high compared to a true market-wide deployment.</li>
+    </ul>
+    <h3>What I'd Do Differently Next Time</h3>
+    <p>In future benchmarking phases, I would standardize the data capture schema early to prevent mixed numeric and text encoding issues in the raw data export, proactively over-sample the "not-yet-transitioned" customer segment, and run the qualitative interview track in parallel with the survey to speed up time-to-insight.</p>
+  </div>
+</article></div>
+<section class="next"><div class="in"><p class="eyebrow">Keep reading</p><div class="links"><a href="next-gen.html">Designing Human Oversight for AI-Assisted Workspaces</a><a href="grid-layout.html">Choosing a Layout for an AI Copilot</a></div></div></section>
+</main>
+</body>
+</html>
