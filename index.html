@@ -398,11 +398,20 @@
     .ab-facts div { grid-template-columns: 6rem minmax(0, 1fr); }
   }
 
-  .more-grid li a { display: block; color: inherit; text-decoration: none; height: 100%; }
+  .more-grid li a { display: grid; gap: .55rem; align-content: start; color: inherit; text-decoration: none; height: 100%; }
+  .more-grid li a strong, .more-grid li a > span { display: block; }
+  .more-grid li a > span { line-height: 1.5; }
   .more-grid li a:hover strong { text-decoration: underline; text-underline-offset: 3px; }
-  .more-grid .go { display: block; margin-top: .9rem; font-style: normal; font-weight: 600; color: var(--link); font-size: .92rem; }
+  .more-grid .go { display: block; margin-top: .4rem; font-style: normal; font-weight: 600; color: var(--link); font-size: .92rem; }
   .chead .sub { font-size: 1.15rem; max-width: 52ch; margin: 0; opacity: .9; }
   .bn .muted { color: var(--muted); }
+    .bn .deck { position: relative; width: 100%; aspect-ratio: 960 / 569; border-radius: 10px; overflow: hidden; border: 1px solid var(--line, rgba(0,0,0,.1)); background: #fff; }
+  .bn .deck iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  /* ---- Figures on More work pages ---- */
+  .bn figure.fig { margin: 1rem 0 0; }
+  .bn figure.fig img { display: block; width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line, rgba(0,0,0,.1)); background: #fff; }
+  .bn figure.fig figcaption { font-size: .82rem; margin-top: .5rem; opacity: .75; }
+  .bn figure.fig.narrow img { max-width: 440px; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .shape { animation: none; } .btn, .more-grid li, .contact a.pill { transition: none; } }
 </style>
 </head>
