@@ -136,13 +136,15 @@
   .pub-list { list-style: none; padding: 0; margin: 0; }
   .pub-list li { padding-left: 1.1rem; border-left: 4px solid var(--coral); max-width: 52rem; }
   .pub-list p { margin: 0; }
+  .pub-sub { font-size: 1.3rem; margin: 2.5rem 0 1rem; }
+  .proj-list { margin: 0; padding-left: 1.2rem; max-width: 52rem; }
+  .proj-list li { margin-bottom: .5rem; }
   .about-lead { margin-top: 1rem; margin-bottom: 3rem; }
-  .about-lead p:first-child { font-family: var(--font-head); font-size: clamp(1.25rem, 2.6vw, 1.7rem); line-height: 1.4; font-weight: 500; max-width: 46ch; }
-  .about-lead p { max-width: 62ch; }
+  .about-lead p { max-width: 62ch; font-family: var(--font-body); font-size: 1.15rem; line-height: 1.6; font-weight: 400; margin: 0 0 1rem; }
   .about-grid { display: grid; grid-template-columns: minmax(0, 20rem) minmax(0, 1fr); gap: clamp(1.5rem, 5vw, 4rem); align-items: start; margin-top: 1.5rem; }
   .about-grid .col { max-width: 46rem; }
   .portrait { margin: 0; position: sticky; top: 5.5rem; }
-  .portrait img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 28px 28px 120px 28px; border: 3px solid var(--ink); box-shadow: 10px 10px 0 var(--sun); background: var(--b1-bg); }
+  .portrait img { display: block; width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 28px 28px 120px 28px; border: 3px solid var(--ink); box-shadow: 10px 10px 0 var(--sun); background: var(--b1-bg); }
   .portrait .ph { display: none; }
   .portrait.nophoto .ph { display: block; }
   .ill { width: 100%; height: auto; display: block; }
@@ -164,6 +166,9 @@
   .job:nth-child(4n+2) h3 { border-left: 5px solid var(--coral); padding-left: .8rem; }
   .job:nth-child(4n+3) h3 { border-left: 5px solid var(--sun); padding-left: .8rem; }
   .job:nth-child(4n) h3 { border-left: 5px solid var(--mint); padding-left: .8rem; }
+  .job-sub { font-weight: 600; margin: 1rem 0 .4rem; }
+  .job-projects { margin: 0; padding-left: 1.2rem; }
+  .job-projects li { margin-bottom: .35rem; }
   .skillgroup { margin-top: 2rem; }
   .skillgroup h3 { font-size: 1.1rem; margin-bottom: .8rem; }
   .chips { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0; padding: 0; list-style: none; }
@@ -349,18 +354,79 @@
 
   /* ---- Home: Swiss poster hero and full-width colour bands ---- */
   .in, .top .in { max-width: 80rem; }
-  .hero .in { padding-block: 1.2rem 2.5rem; }
+  .hero .in { padding-block: clamp(2.5rem, 6vw, 4.5rem) 2.5rem; }
   .contact, .chead { margin-inline: max(1rem, calc((100% - 80rem) / 2)); }
-  .metarow { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 1rem; font-size: .85rem; padding-bottom: .8rem; border-bottom: 1px solid var(--ink); margin-bottom: clamp(3rem, 14vw, 9rem); }
+  .metarow { display: grid; grid-template-columns: 2fr 2fr 1fr; gap: 1rem; font-size: .9rem; padding-top: .9rem; border-top: 1px solid var(--ink); margin-top: clamp(2.5rem, 6vw, 4.5rem); }
   .metarow span { max-width: 22ch; }
-  .metarow span:first-child { max-width: none; }
   .hero h1 { font-size: min(21vw, 18rem); line-height: .86; letter-spacing: -.055em; font-weight: 700; }
   .band { min-height: 0; border-top: 1px solid var(--ink); display: block; padding-block: clamp(3.5rem, 8vw, 6rem); }
   .band .in { max-width: 80rem; }
   .band h2 { font-size: clamp(1.7rem, 3.2vw, 2.5rem); letter-spacing: -.04em; }
   .band .viz { background: transparent; border: 1px solid color-mix(in srgb, var(--b-fg) 55%, transparent); border-radius: 0; }
   .band .btn { border-radius: 0; border-width: 1px; }
-  @media (max-width: 52rem) { .metarow { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 52rem) { .metarow { grid-template-columns: 1fr; gap: .3rem; } }
+
+  /* ---- About page layout ---- */
+  .ab-top { display: grid; grid-template-columns: minmax(0, 22rem) minmax(0, 1fr); gap: clamp(1.5rem, 5vw, 4rem); align-items: start; margin-top: 2rem; }
+  .ab-top .portrait { position: static; }
+  .ab-lead { font-family: var(--font-head); font-size: clamp(1.5rem, 3vw, 2.2rem); line-height: 1.25; font-weight: 600; letter-spacing: -.03em; max-width: 30ch; margin: 0 0 2rem; }
+  .ab-facts { display: grid; gap: 0; margin: 0; border-top: 1px solid var(--ink); }
+  .ab-facts div { display: grid; grid-template-columns: 8rem minmax(0, 1fr); gap: 1rem; padding-block: .9rem; border-bottom: 1px solid var(--line); }
+  .ab-facts dt { color: var(--muted); font-size: .9rem; }
+  .ab-facts dd { margin: 0; }
+  .ab-h { font-size: clamp(1.4rem, 2.6vw, 1.9rem); letter-spacing: -.04em; margin: clamp(2.5rem, 6vw, 4rem) 0 1rem; }
+  .ab-cards, .ab-steps, .ab-projects { display: grid; gap: 1rem; list-style: none; padding: 0; margin: 0; }
+  .ab-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ab-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); counter-reset: step; }
+  .ab-projects { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .ab-card, .ab-step { border: 1px solid var(--ink); border-radius: 14px; padding: 1.4rem; background: transparent; }
+  .ab-card h4, .ab-step h4 { font-size: 1.1rem; margin: 0 0 .5rem; letter-spacing: -.02em; }
+  .ab-card p, .ab-step p { margin: 0; max-width: none; }
+  .ab-step .ab-when { display: block; font-size: .85rem; color: var(--indigo); font-weight: 600; margin-bottom: .6rem; }
+  .ab-wide { max-width: 52rem; }
+  .ab-more { margin: 1.2rem 0 0; font-weight: 500; }
+  .pub-feature { border: 1px solid var(--ink); border-radius: 14px; padding: clamp(1.4rem, 3.5vw, 2.5rem); margin-top: 2rem; background: var(--b3-bg); color: var(--b3-fg); }
+  .pub-feature h3 { font-size: clamp(1.5rem, 3vw, 2.3rem); letter-spacing: -.04em; line-height: 1.15; margin: .8rem 0 1.2rem; max-width: 30ch; }
+  .pub-badge { font-size: .85rem; font-weight: 600; margin: 0; }
+  .pub-venue, .pub-authors { margin: 0 0 .5rem; max-width: 60ch; }
+  .pub-authors { opacity: .85; margin-bottom: 1.5rem; }
+  .pub-feature .btn { color: inherit; border-color: currentColor; }
+  .ab-projects .ab-card { font-weight: 500; }
+  @media (max-width: 56rem) {
+    .ab-top, .ab-cards, .ab-steps, .ab-projects { grid-template-columns: minmax(0, 1fr); }
+    .ab-top .portrait { max-width: 18rem; }
+    .ab-facts div { grid-template-columns: 6rem minmax(0, 1fr); }
+  }
+
+  .more-grid li a { display: grid; gap: .55rem; align-content: start; color: inherit; text-decoration: none; height: 100%; }
+  .more-grid li a strong, .more-grid li a > span { display: block; }
+  .more-grid li a > span { line-height: 1.5; }
+  .more-grid li a:hover strong { text-decoration: underline; text-underline-offset: 3px; }
+  .more-grid .go { display: block; margin-top: .4rem; font-style: normal; font-weight: 600; color: var(--link); font-size: .92rem; }
+  .chead .sub { font-size: 1.15rem; max-width: 52ch; margin: 0; opacity: .9; }
+  .bn .muted { color: var(--muted); }
+    .bn .deck { position: relative; width: 100%; aspect-ratio: 960 / 569; border-radius: 10px; overflow: hidden; border: 1px solid var(--line, rgba(0,0,0,.1)); background: #fff; }
+  .bn .deck iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .ab-pet { display: grid; grid-template-columns: 13rem minmax(0, 1fr); gap: 1.4rem; align-items: center; }
+  .ab-pet-fig { margin: 0; }
+  .ab-pet-fig img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 14px; }
+  .ab-pet-fig figcaption { font-size: .8rem; opacity: .7; margin-top: .4rem; }
+  .ab-pet p + p.ab-pet-note { margin-top: 1rem; }
+  @media (max-width: 640px) { .ab-pet { grid-template-columns: minmax(0, 1fr); } .ab-pet-fig { max-width: 15rem; } }
+  /* ---- Hero drawing overlay ---- */
+  .hero .in { position: relative; }
+  .hero .hname { position: relative; }
+  .hero .hname::before { content: ""; position: absolute; right: 0; top: 0; bottom: 0; width: min(46%, 30rem); background: var(--art, none) right center / contain no-repeat; opacity: .5; pointer-events: none; z-index: 0; }
+  .hero .hname h1 { position: relative; z-index: 1; }
+  .hero .in > * { position: relative; z-index: 1; }
+  @media (max-width: 52rem) { .hero .hname::before { width: 80%; opacity: .25; } }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .hero .hname::before { filter: invert(1); opacity: .4; } }
+  :root[data-theme="dark"] .hero .hname::before { filter: invert(1); opacity: .4; }
+  /* ---- Figures on More work pages ---- */
+  .bn figure.fig { margin: 1rem 0 0; }
+  .bn figure.fig img { display: block; width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line, rgba(0,0,0,.1)); background: #fff; }
+  .bn figure.fig figcaption { font-size: .82rem; margin-top: .5rem; opacity: .75; }
+  .bn figure.fig.narrow img { max-width: 440px; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .shape { animation: none; } .btn, .more-grid li, .contact a.pill { transition: none; } }
 </style>
 </head>
@@ -368,8 +434,8 @@
 <header class="top"><div class="in"><a class="logo" href="index.html"><i aria-hidden="true"></i>Serena Yang</a><nav class="nav" aria-label="Sections"><a href="index.html#work">Work</a><a href="resume.html">Resume</a><a href="about.html">About</a></nav><div class="icons"><a href="https://linkedin.com/in/serena-yang-01010" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.500 3a2 2 0 100 4 2 2 0 000-4zM3 9h3v12H3zM9 9h2.900v1.700c.6-1.100 2-2 3.900-2 3.300 0 4.200 2.100 4.200 5V21h-3v-6c0-1.500-.3-2.700-1.900-2.700-1.700 0-2.100 1.300-2.100 2.800V21H9z"/></svg></a><a href="mailto:serenayang0@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 011 1v12a1 1 0 01-1 1H3a1 1 0 01-1-1V6a1 1 0 011-1zm1.500 2L12 12.500 19.500 7z"/></svg></a></div></div></header><script>(function(){var p=location.pathname,l=document.querySelectorAll(".nav a"),i=/about/.test(p)?2:/resume/.test(p)?1:/(next-gen|grid-layout|studio-transition|index|\/$|^$)/.test(p)?0:0;l[i].setAttribute("aria-current","page")})()</script>
 <main>
 <section class="chead b1"><div class="in"><p class="back"><a href="index.html#work">&larr; All case studies</a></p><div class="band-grid"><div><div class="nbig">01</div><p class="eyebrow" style="color:inherit;opacity:.8">Case study</p><h1>Designing Human Oversight for AI-Assisted Workspaces</h1></div><figure class="viz"><div class="dots" role="img" aria-label="Four of five opportunity areas filled in, one outlined"><span></span><span></span><span></span><span></span><span class="off"></span></div><p class="big">4 of 5</p><figcaption>Opportunity areas that shaped the next design iteration. The fifth, supervisor oversight views, was deferred.</figcaption></figure></div></div></section>
-<div class="cp body-b1" style="--b-accent:var(--b1-accent)"><section class="in"><dl class="strip"><div><dt>Project scope</dt><dd>Multi-account, AI-powered enterprise workspace built on a hybrid bot-and-human model: AI assistants work on interactions under human agent oversight (Phase A &amp; V2 Validation).</dd></div><div><dt>My role</dt><dd>Solo UX Researcher (End-to-end strategy, recruitment, moderation, analysis, framework mapping).</dd></div><div><dt>Timeline</dt><dd>May to Oct 2026 (Phase A interviews, then validation of the V2 prototype)</dd></div><div><dt>Core artifacts</dt><dd>Jobs-to-be-Done (JTBD) maps, user personas, and validation reports.</dd></div></dl></section><section class="in"><div class="tldr"><h2>In short</h2><p><strong>Problem:</strong> An AI-assisted workspace concept had little evidence from the agents and supervisors who would use it.</p><p><strong>Result:</strong> I identified five opportunity areas. Four shaped the next design iteration.</p></div></section><div class="in case-grid"><div class="bn bn-lead">
-    <p>I led the end-to-end research that transformed an abstract AI concept into an evidence-backed product roadmap. By studying how contact center agents and supervisors interact with automation, I identified five critical opportunity areas—four of which were directly integrated into the next design iteration.</p>
+<div class="cp body-b1" style="--b-accent:var(--b1-accent)"><section class="in"><dl class="strip"><div><dt>Project scope</dt><dd>AI-powered, multi-tenant contact center workspace built for human-AI collaboration. Autonomous assistants process customer interactions while live agents monitor, guide, and intervene as needed (Phase A &amp; V2 Validation).</dd></div><div><dt>My role</dt><dd>Lead UX Researcher (End-to-end strategy, recruitment, moderation, analysis, framework mapping).</dd></div><div><dt>Timeline</dt><dd>May to Oct 2026 (Phase A interviews, then validation of the V2 prototype)</dd></div><div><dt>Core artifacts</dt><dd>Jobs-to-be-Done (JTBD) maps, user personas, and validation reports.</dd></div></dl></section><section class="in"><div class="tldr"><h2>In short</h2><p><strong>Problem:</strong> Our AI-assisted workspace concept lacked empirical validation from the frontline agents and supervisors who would rely on it daily.</p><p><strong>Result:</strong> Uncovered five core opportunity areas, with four directly shaping the next design iteration.</p></div></section><div class="in case-grid"><div class="bn bn-lead">
+    <p>I led a multi-phase research initiative across five enterprise accounts to uncover what frontline agents and supervisors actually need to trust AI automation. Those behavioral insights gave product and design teams a clear blueprint to build the V2 prototype.</p>
     
 
     </div><section class="bn" style="grid-column: span 5"><h3><span class="cn">01</span>The Challenge &amp; Question</h3>
@@ -378,40 +444,39 @@
 
     </section><section class="bn" style="grid-column: span 5"><h3><span class="cn">02</span>Strategic Decisions That Shaped the Work</h3>
     <h4>Separating raw user data from researcher interpretation</h4>
-    <p>To protect the integrity of the data, I explicitly partitioned my interim report. I categorized my synthesis into direct user inputs versus "researcher interpretation."</p>
-    <p class="strategy"><strong>The Strategy:</strong> By framing my insights as high-probability hypotheses rather than definitive user feature requests, I prevented stakeholders from prematurely anchoring on unverified solutions.</p>
-    <h4>Prioritizing intellectual honesty over a "perfect" narrative</h4>
-    <p>Only two of our four primary research goals were fully met. I discovered that the presence of a facilitator in the room caused participants to alter how they validated the AI's work, skewing our understanding of "confident approval."</p>
-    <p class="strategy"><strong>The Strategy:</strong> Instead of over-indexing on compromised data, I flagged the limitation to the product team, stakeholders and the UX director in the readout and proposed an unmoderated, facilitator-free testing track for the next phase.</p>
+    <p>I partitioned my readout into direct user evidence and researcher interpretation so stakeholders wouldn&rsquo;t anchor on unverified solutions.</p>
+    <h4>Prioritizing intellectual honesty over a polished narrative</h4>
+    <p>I flagged the observer effect (where a facilitator skewed approval metrics) to leadership, resulting in approval for an unmoderated testing track.</p>
 
     </section><section class="bn" style="grid-column: span 5"><h3><span class="cn">03</span>Key Discoveries &amp; Operational Insights</h3>
     <ul>
-      <li><strong>The human-in-the-loop model works, but accuracy is non-negotiable.</strong> Six out of seven sessions validated the core loop (bot proposes, human edits/approves). However, users made it clear that accuracy is a zero-sum game; they will completely abandon the tool if the AI introduces errors.</li>
-      <li><strong>Context-switching is a bigger pain point than AI capability.</strong> Agents routinely juggle four to six disconnected systems to resolve a single customer interaction. The research proved that workflow consolidation drove far more user excitement than any individual standalone AI feature.</li>
-      <li><strong>The AI-to-human handoff is the highest-value friction point.</strong> When a bot fails and escalates a ticket to a live agent, agents require a concise synopsis of what occurred, what was attempted, and where the logic broke. Without this context, customers are forced to repeat themselves.</li>
-      <li><strong>Supervisors fear blind trust and "rubber-stamping."</strong> Supervisors expressed concern that agents would blindly click "approve" to hit speed metrics. They explicitly requested behavioral coaching signals and quality-assurance views rather than punitive tracking features.</li>
+      <li><strong>One bad AI mistake breaks agent trust.</strong> Six of seven sessions validated the core review loop. However, agents made it clear that if the AI introduces errors, they will abandon it rather than spend time fixing its work.</li>
+      <li><strong>Agents care more about fewer screens than flashy AI.</strong> Routinely switching across four to six separate systems to solve one issue was their biggest daily frustration. Consolidating those tools beat out every standalone AI feature we tested.</li>
+      <li><strong>Failed bot handoffs force customers to repeat themselves.</strong> When a bot escalates a call or chat, agents need a quick summary of what happened and where the bot got stuck so they can pick up seamlessly.</li>
+      <li><strong>Supervisors worry agents will blindly click approve.</strong> Leaders feared speed metrics would push agents to rubber-stamp AI outputs without checking them. They asked for coaching and quality-assurance views instead of punitive tracking.</li>
     </ul>
 
     </section><section class="bn" style="grid-column: span 5"><h3><span class="cn">04</span>Product Impact &amp; Outcomes</h3>
-    <p>My research heavily steered the definition of the V2 prototype. Four of the five opportunity areas I identified were greenlit, designed, and evaluated with 8 enterprise users across 5 accounts:</p>
+    <p>My research directly shaped the V2 prototype. Four of the five opportunity areas were prioritized, built, and validated with 8 enterprise users across 5 accounts.</p>
     <ul>
-      <li><strong>Escalation Handoff Summary:</strong> Built to pass bot-to-human context seamlessly.</li>
-      <li><strong>Persistent Context Surface:</strong> Designed to keep critical customer data visible across tasks.</li>
-      <li><strong>In-Context Knowledge Delivery:</strong> Surfaced proactive documentation based on live conversation needs.</li>
-      <li><strong>Consolidation Layer:</strong> Unified multiple disparate legacy tools into a singular interface.</li>
+      <li><strong>Escalation Handoff Summary:</strong> Automatically transfers bot conversation history and troubleshooting context during live agent escalations.</li>
+      <li><strong>Persistent Context Surface:</strong> Anchors critical customer data across every workflow step so agents retain full situational awareness.</li>
+      <li><strong>In-Context Knowledge Delivery:</strong> Surfaces relevant policy guidance and documentation dynamically based on live conversation intent.</li>
+      <li><strong>Consolidation Layer:</strong> Integrates disparate legacy systems into a unified workspace to reduce cognitive load and context-switching.</li>
     </ul>
-    <p><strong>The Open Question:</strong> The fifth area—oversight-quality views for supervisors to mitigate the rubber-stamping problem—was deferred due to product scope. This remained the primary strategic area I was targeting for the next phase of development.</p>
+    <h4>Next Strategic Priority</h4>
+    <p>The fifth opportunity area, supervisor quality-assurance views to mitigate blind approval, was deferred due to V2 scope constraints. It remains the primary strategic focus for the next phase of development.</p>
 
     </section><section class="bn" style="grid-column: span 5"><h3><span class="cn">05</span>Methodological Constraints</h3>
-    <p>To ensure our team designed responsibly, I explicitly documented our sample boundaries across all executive readouts:</p>
+    <p>To ensure stakeholders made informed product decisions, I explicitly documented our sample boundaries across all executive readouts.</p>
     <ul>
-      <li><strong>Frontline Agent Gaps:</strong> Phase A relied on 7 sessions across 5 accounts, but included only one direct frontline agent and one group session for the higher-education vertical.</li>
-      <li><strong>V2 Validation Limitations:</strong> The subsequent prototype validation phase lacked direct frontline agent interviews.</li>
-      <li><strong>Mitigation:</strong> I leveraged insights from a parallel concept-testing study on Grid Layouts to cross-reference and de-risk our structural layout decisions.</li>
+      <li><strong>Frontline Agent Representation:</strong> Phase A included 7 sessions across 5 enterprise accounts, but relied on a single direct frontline agent alongside one group session in the higher-education vertical.</li>
+      <li><strong>V2 Validation Coverage:</strong> The subsequent prototype validation round did not include direct interviews with frontline agents.</li>
+      <li><strong>Cross-Study Mitigation:</strong> I cross-referenced findings from a parallel Grid Layout concept-testing study to triangulate agent preferences and de-risk our structural layout decisions.</li>
     </ul>
 
     </section><section class="bn" style="grid-column: span 5"><h3><span class="cn">06</span>What I'd Do Differently</h3>
-    <p>I would reach frontline agents sooner. Phase A rested on one frontline agent, so the agent-side findings were directional, and recruiting two or three more was the first thing I would do. I would widen the higher-education sample beyond one group session. And I would run the facilitator-free test earlier, because two of the four research goals were only partly met when people reacted to a facilitator in the room.</p>
+    <p>If I were starting this initiative again, I would establish direct recruitment channels with frontline agents before kickoff rather than relying on account-level access, ensuring stronger end-user representation from day one. I would also diversify our vertical mix beyond higher education early on to broaden generalizability. Finally, I would introduce unmoderated testing alongside initial discovery to measure how agents evaluate AI outputs without a facilitator in the room.</p>
   </section></div></div>
 <section class="next"><div class="in"><p class="eyebrow">Keep reading</p><div class="links"><a href="grid-layout.html">Choosing a Layout for an AI Copilot</a><a href="studio-transition.html">Studio Transition: Desktop to Web</a></div></div></section>
 </main>
