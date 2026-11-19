@@ -136,13 +136,15 @@
   .pub-list { list-style: none; padding: 0; margin: 0; }
   .pub-list li { padding-left: 1.1rem; border-left: 4px solid var(--coral); max-width: 52rem; }
   .pub-list p { margin: 0; }
+  .pub-sub { font-size: 1.3rem; margin: 2.5rem 0 1rem; }
+  .proj-list { margin: 0; padding-left: 1.2rem; max-width: 52rem; }
+  .proj-list li { margin-bottom: .5rem; }
   .about-lead { margin-top: 1rem; margin-bottom: 3rem; }
-  .about-lead p:first-child { font-family: var(--font-head); font-size: clamp(1.25rem, 2.6vw, 1.7rem); line-height: 1.4; font-weight: 500; max-width: 46ch; }
-  .about-lead p { max-width: 62ch; }
+  .about-lead p { max-width: 62ch; font-family: var(--font-body); font-size: 1.15rem; line-height: 1.6; font-weight: 400; margin: 0 0 1rem; }
   .about-grid { display: grid; grid-template-columns: minmax(0, 20rem) minmax(0, 1fr); gap: clamp(1.5rem, 5vw, 4rem); align-items: start; margin-top: 1.5rem; }
   .about-grid .col { max-width: 46rem; }
   .portrait { margin: 0; position: sticky; top: 5.5rem; }
-  .portrait img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 28px 28px 120px 28px; border: 3px solid var(--ink); box-shadow: 10px 10px 0 var(--sun); background: var(--b1-bg); }
+  .portrait img { display: block; width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 28px 28px 120px 28px; border: 3px solid var(--ink); box-shadow: 10px 10px 0 var(--sun); background: var(--b1-bg); }
   .portrait .ph { display: none; }
   .portrait.nophoto .ph { display: block; }
   .ill { width: 100%; height: auto; display: block; }
@@ -164,6 +166,9 @@
   .job:nth-child(4n+2) h3 { border-left: 5px solid var(--coral); padding-left: .8rem; }
   .job:nth-child(4n+3) h3 { border-left: 5px solid var(--sun); padding-left: .8rem; }
   .job:nth-child(4n) h3 { border-left: 5px solid var(--mint); padding-left: .8rem; }
+  .job-sub { font-weight: 600; margin: 1rem 0 .4rem; }
+  .job-projects { margin: 0; padding-left: 1.2rem; }
+  .job-projects li { margin-bottom: .35rem; }
   .skillgroup { margin-top: 2rem; }
   .skillgroup h3 { font-size: 1.1rem; margin-bottom: .8rem; }
   .chips { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0; padding: 0; list-style: none; }
@@ -349,18 +354,99 @@
 
   /* ---- Home: Swiss poster hero and full-width colour bands ---- */
   .in, .top .in { max-width: 80rem; }
-  .hero .in { padding-block: 1.2rem 2.5rem; }
+  .hero .in { padding-block: clamp(2.5rem, 6vw, 4.5rem) 2.5rem; }
   .contact, .chead { margin-inline: max(1rem, calc((100% - 80rem) / 2)); }
-  .metarow { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 1rem; font-size: .85rem; padding-bottom: .8rem; border-bottom: 1px solid var(--ink); margin-bottom: clamp(3rem, 14vw, 9rem); }
+  .metarow { display: grid; grid-template-columns: 2fr 2fr 1fr; gap: 1rem; font-size: .9rem; padding-top: .9rem; border-top: 1px solid var(--ink); margin-top: clamp(2.5rem, 6vw, 4.5rem); }
   .metarow span { max-width: 22ch; }
-  .metarow span:first-child { max-width: none; }
   .hero h1 { font-size: min(21vw, 18rem); line-height: .86; letter-spacing: -.055em; font-weight: 700; }
   .band { min-height: 0; border-top: 1px solid var(--ink); display: block; padding-block: clamp(3.5rem, 8vw, 6rem); }
   .band .in { max-width: 80rem; }
   .band h2 { font-size: clamp(1.7rem, 3.2vw, 2.5rem); letter-spacing: -.04em; }
   .band .viz { background: transparent; border: 1px solid color-mix(in srgb, var(--b-fg) 55%, transparent); border-radius: 0; }
   .band .btn { border-radius: 0; border-width: 1px; }
-  @media (max-width: 52rem) { .metarow { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 52rem) { .metarow { grid-template-columns: 1fr; gap: .3rem; } }
+
+  /* ---- About page layout ---- */
+  .ab-top { display: grid; grid-template-columns: minmax(0, 22rem) minmax(0, 1fr); gap: clamp(1.5rem, 5vw, 4rem); align-items: start; margin-top: 2rem; }
+  .ab-top .portrait { position: static; }
+  .ab-lead { font-family: var(--font-head); font-size: clamp(1.5rem, 3vw, 2.2rem); line-height: 1.25; font-weight: 600; letter-spacing: -.03em; max-width: 30ch; margin: 0 0 2rem; }
+  .ab-facts { display: grid; gap: 0; margin: 0; border-top: 1px solid var(--ink); }
+  .ab-facts div { display: grid; grid-template-columns: 8rem minmax(0, 1fr); gap: 1rem; padding-block: .9rem; border-bottom: 1px solid var(--line); }
+  .ab-facts dt { color: var(--muted); font-size: .9rem; }
+  .ab-facts dd { margin: 0; }
+  .ab-h { font-size: clamp(1.4rem, 2.6vw, 1.9rem); letter-spacing: -.04em; margin: clamp(2.5rem, 6vw, 4rem) 0 1rem; }
+  .ab-cards, .ab-steps, .ab-projects { display: grid; gap: 1rem; list-style: none; padding: 0; margin: 0; }
+  .ab-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ab-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); counter-reset: step; }
+  .ab-projects { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .ab-card, .ab-step { border: 1px solid var(--ink); border-radius: 14px; padding: 1.4rem; background: transparent; }
+  .ab-card h4, .ab-step h4 { font-size: 1.1rem; margin: 0 0 .5rem; letter-spacing: -.02em; }
+  .ab-card p, .ab-step p { margin: 0; max-width: none; }
+  .ab-step .ab-when { display: block; font-size: .85rem; color: var(--indigo); font-weight: 600; margin-bottom: .6rem; }
+  .ab-wide { max-width: 52rem; }
+  .ab-more { margin: 1.2rem 0 0; font-weight: 500; }
+  .pub-feature { border: 1px solid var(--ink); border-radius: 14px; padding: clamp(1.4rem, 3.5vw, 2.5rem); margin-top: 2rem; background: var(--b3-bg); color: var(--b3-fg); }
+  .pub-feature h3 { font-size: clamp(1.5rem, 3vw, 2.3rem); letter-spacing: -.04em; line-height: 1.15; margin: .8rem 0 1.2rem; max-width: 30ch; }
+  .pub-badge { font-size: .85rem; font-weight: 600; margin: 0; }
+  .pub-venue, .pub-authors { margin: 0 0 .5rem; max-width: 60ch; }
+  .pub-authors { opacity: .85; margin-bottom: 1.5rem; }
+  .pub-feature .btn { color: inherit; border-color: currentColor; }
+  .ab-projects .ab-card { font-weight: 500; }
+  @media (max-width: 56rem) {
+    .ab-top, .ab-cards, .ab-steps, .ab-projects { grid-template-columns: minmax(0, 1fr); }
+    .ab-top .portrait { max-width: 18rem; }
+    .ab-facts div { grid-template-columns: 6rem minmax(0, 1fr); }
+  }
+
+  .more-grid li a { display: grid; gap: .55rem; align-content: start; color: inherit; text-decoration: none; height: 100%; }
+  .more-grid li a strong, .more-grid li a > span { display: block; }
+  .more-grid li a > span { line-height: 1.5; }
+  .more-grid li a:hover strong { text-decoration: underline; text-underline-offset: 3px; }
+  .more-grid .go { display: block; margin-top: .4rem; font-style: normal; font-weight: 600; color: var(--link); font-size: .92rem; }
+  .chead .sub { font-size: 1.15rem; max-width: 52ch; margin: 0; opacity: .9; }
+  .bn .muted { color: var(--muted); }
+    .bn .deck { position: relative; width: 100%; aspect-ratio: 960 / 569; border-radius: 10px; overflow: hidden; border: 1px solid var(--line, rgba(0,0,0,.1)); background: #fff; }
+  .bn .deck iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .ab-pet { display: grid; grid-template-columns: 13rem minmax(0, 1fr); gap: 1.4rem; align-items: center; }
+  .ab-pet-fig { margin: 0; }
+  .ab-pet-fig img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 14px; }
+  .ab-pet-fig figcaption { font-size: .8rem; opacity: .7; margin-top: .4rem; }
+  .ab-pet p + p.ab-pet-note { margin-top: 1rem; }
+  @media (max-width: 640px) { .ab-pet { grid-template-columns: minmax(0, 1fr); } .ab-pet-fig { max-width: 15rem; } }
+  /* ---- Hero drawing overlay ---- */
+  .hero .in { position: relative; }
+  .hero .hname { position: relative; }
+  .hero .hname::before { content: ""; position: absolute; right: 0; top: 0; bottom: 0; width: min(46%, 30rem); background: var(--art, none) right center / contain no-repeat; opacity: .5; pointer-events: none; z-index: 0; }
+  .hero .hname h1 { position: relative; z-index: 1; }
+  .hero .in > * { position: relative; z-index: 1; }
+  @media (max-width: 52rem) { .hero .hname::before { width: 80%; opacity: .25; } }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .hero .hname::before { filter: invert(1); opacity: .4; } }
+  :root[data-theme="dark"] .hero .hname::before { filter: invert(1); opacity: .4; }
+  .jtbd .jt-note { background: var(--paper, rgba(0,0,0,.04)); border-radius: 12px; padding: .9rem 1.1rem; margin: 1rem 0; font-size: .95rem; }
+  .jtbd .jt-meta { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.4rem; margin: 1rem 0; }
+  .jtbd .jt-core { border-left: 6px solid var(--b-accent, #5B5BF0); padding: .4rem 0 .4rem 1.1rem; margin: 1.4rem 0; }
+  .jtbd .jt-label { font-size: .78rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; opacity: .7; }
+  .jtbd .jt-core p { font-size: 1.15rem; line-height: 1.5; margin: .3rem 0 0; }
+  .jtbd .jt-h { margin: 1.6rem 0 .6rem; }
+  .jtbd .jt-list { padding-left: 1.2rem; display: grid; gap: 1.2rem; }
+  .jtbd .jt-q { font-style: italic; margin: .35rem 0; }
+  .jtbd .jt-src { font-size: .92rem; opacity: .85; margin: .35rem 0 0; }
+  .jtbd .jt-dims { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+  .jtbd .jt-dims > div { border: 1px solid var(--line, rgba(0,0,0,.12)); border-radius: 12px; padding: .9rem 1rem; }
+  .jtbd .jt-dims p { margin: .3rem 0 0; font-size: .95rem; }
+  @media (max-width: 52rem) { .jtbd .jt-meta, .jtbd .jt-dims { grid-template-columns: minmax(0, 1fr); } }
+  .jtbd .jt-pages { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2rem; margin: 1.2rem 0; }
+  .jtbd .jt-pages img { display: block; width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line, rgba(0,0,0,.12)); box-shadow: 0 6px 20px rgba(0,0,0,.08); }
+  .jtbd .jt-open { margin: 0; }
+  @media (max-width: 52rem) { .jtbd .jt-pages { grid-template-columns: minmax(0, 1fr); } }
+  .jtbd .jt-viewer { margin: 1.2rem 0; border: 1px solid var(--line, rgba(0,0,0,.12)); border-radius: 10px; overflow: hidden; background: #fff; }
+  .jtbd .jt-viewer object { display: block; width: 100%; height: clamp(520px, 85vh, 900px); }
+  .jtbd .jt-viewer .jt-pages { padding: 1rem; margin: 0; }
+  /* ---- Figures on More work pages ---- */
+  .bn figure.fig { margin: 1rem 0 0; }
+  .bn figure.fig img { display: block; width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line, rgba(0,0,0,.1)); background: #fff; }
+  .bn figure.fig figcaption { font-size: .82rem; margin-top: .5rem; opacity: .75; }
+  .bn figure.fig.narrow img { max-width: 440px; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .shape { animation: none; } .btn, .more-grid li, .contact a.pill { transition: none; } }
 </style>
 </head>
@@ -368,7 +454,7 @@
 <header class="top"><div class="in"><a class="logo" href="index.html"><i aria-hidden="true"></i>Serena Yang</a><nav class="nav" aria-label="Sections"><a href="index.html#work">Work</a><a href="resume.html">Resume</a><a href="about.html">About</a></nav><div class="icons"><a href="https://linkedin.com/in/serena-yang-01010" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.500 3a2 2 0 100 4 2 2 0 000-4zM3 9h3v12H3zM9 9h2.900v1.700c.6-1.100 2-2 3.900-2 3.300 0 4.200 2.100 4.200 5V21h-3v-6c0-1.500-.3-2.700-1.900-2.700-1.700 0-2.100 1.300-2.100 2.800V21H9z"/></svg></a><a href="mailto:serenayang0@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 011 1v12a1 1 0 01-1 1H3a1 1 0 01-1-1V6a1 1 0 011-1zm1.500 2L12 12.500 19.500 7z"/></svg></a></div></div></header><script>(function(){var p=location.pathname,l=document.querySelectorAll(".nav a"),i=/about/.test(p)?2:/resume/.test(p)?1:/(next-gen|grid-layout|studio-transition|index|\/$|^$)/.test(p)?0:0;l[i].setAttribute("aria-current","page")})()</script>
 <main>
 <section class="chead b3"><div class="in"><p class="back"><a href="index.html#work">&larr; All case studies</a></p><div class="band-grid"><div><div class="nbig">03</div><p class="eyebrow" style="color:inherit;opacity:.8">Case study</p><h1>Studio Transition: Benchmarking a Critical Desktop-to-Web Migration</h1></div><figure class="viz" role="img" aria-label="Usability scores out of 100. Internal users: desktop 83.8, web 46.8. Customers: desktop 78.2, web 47.6."><div class="pair"><h4>Internal users (n=42)</h4><div class="row"><span>Desktop</span><span class="track"><span class="fill" style="--v:83.8"></span></span><b>83.8</b></div><div class="row web"><span>Web</span><span class="track"><span class="fill" style="--v:46.8"></span></span><b>46.8</b></div><span class="gap">gap: 37 points</span></div><div class="pair"><h4>Customers (n=67)</h4><div class="row"><span>Desktop</span><span class="track"><span class="fill" style="--v:78.2"></span></span><b>78.2</b></div><div class="row web"><span>Web</span><span class="track"><span class="fill" style="--v:47.6"></span></span><b>47.6</b></div><span class="gap">gap: 31 points</span></div><figcaption>Usability scores, 0 to 100, same people rating both versions.</figcaption></figure></div></div></section>
-<div class="cp body-b3" style="--b-accent:var(--b3-accent)"><section class="in"><dl class="strip"><div><dt>Project scope</dt><dd>Enterprise B2B SaaS orchestration studio migration (Phase 1 Benchmarking).</dd></div><div><dt>My role</dt><dd>Quantitative UX Researcher (Survey architecture, statistical analysis, correlation testing, readouts).</dd></div><div><dt>Timeline</dt><dd>May to Jun 2026 (Phase 1 benchmark)</dd></div></dl></section><section class="in"><div class="tldr"><h2>In short</h2><p><strong>Problem:</strong> The team knew customers struggled with the move from desktop to web, but had no standard measure of how much.</p><p><strong>Result:</strong> The web version scored 31 to 37 points below desktop. The plan was to reuse the study as a template for measuring products in transition.</p></div></section><div class="in case-grid"><div class="bn bn-lead">
+<div class="cp body-b3" style="--b-accent:var(--b3-accent)"><section class="in"><dl class="strip"><div><dt>Project scope</dt><dd>Enterprise B2B SaaS orchestration studio migration (Phase 1 Benchmarking).</dd></div><div><dt>My role</dt><dd>UXR (Product Research Lead): survey architecture, statistical analysis, correlation testing, readouts.</dd></div><div><dt>Timeline</dt><dd>May to Jun 2026 (Phase 1 benchmark)</dd></div></dl></section><section class="in"><div class="tldr"><h2>In short</h2><p><strong>Problem:</strong> The team knew customers struggled with the move from desktop to web, but had no standard measure of how much.</p><p><strong>Result:</strong> The web version scored 31 to 37 points below desktop. The plan was to reuse the study as a template for measuring products in transition.</p></div></section><div class="in case-grid"><div class="bn bn-lead">
     <p>I designed a quantitative benchmarking framework that quantified the usability deficit of an enterprise tool moving from desktop to a cloud-based web application. By deploying a validated, lean usability scale, I measured that the web application fell 31 to 37 points below the desktop legacy tool, giving product leadership a baseline for evaluating customer retention risks before deprecation.</p>
     
 
