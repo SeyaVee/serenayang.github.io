@@ -422,6 +422,23 @@
   @media (max-width: 52rem) { .hero .hname::before { width: 80%; opacity: .25; } }
   @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .hero .hname::before { filter: invert(1); opacity: .4; } }
   :root[data-theme="dark"] .hero .hname::before { filter: invert(1); opacity: .4; }
+  .jtbd .jt-note { background: var(--paper, rgba(0,0,0,.04)); border-radius: 12px; padding: .9rem 1.1rem; margin: 1rem 0; font-size: .95rem; }
+  .jtbd .jt-meta { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.4rem; margin: 1rem 0; }
+  .jtbd .jt-core { border-left: 6px solid var(--b-accent, #5B5BF0); padding: .4rem 0 .4rem 1.1rem; margin: 1.4rem 0; }
+  .jtbd .jt-label { font-size: .78rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; opacity: .7; }
+  .jtbd .jt-core p { font-size: 1.15rem; line-height: 1.5; margin: .3rem 0 0; }
+  .jtbd .jt-h { margin: 1.6rem 0 .6rem; }
+  .jtbd .jt-list { padding-left: 1.2rem; display: grid; gap: 1.2rem; }
+  .jtbd .jt-q { font-style: italic; margin: .35rem 0; }
+  .jtbd .jt-src { font-size: .92rem; opacity: .85; margin: .35rem 0 0; }
+  .jtbd .jt-dims { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+  .jtbd .jt-dims > div { border: 1px solid var(--line, rgba(0,0,0,.12)); border-radius: 12px; padding: .9rem 1rem; }
+  .jtbd .jt-dims p { margin: .3rem 0 0; font-size: .95rem; }
+  @media (max-width: 52rem) { .jtbd .jt-meta, .jtbd .jt-dims { grid-template-columns: minmax(0, 1fr); } }
+  .jtbd .jt-pages { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2rem; margin: 1.2rem 0; }
+  .jtbd .jt-pages img { display: block; width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line, rgba(0,0,0,.12)); box-shadow: 0 6px 20px rgba(0,0,0,.08); }
+  .jtbd .jt-open { margin: 0; }
+  @media (max-width: 52rem) { .jtbd .jt-pages { grid-template-columns: minmax(0, 1fr); } }
   /* ---- Figures on More work pages ---- */
   .bn figure.fig { margin: 1rem 0 0; }
   .bn figure.fig img { display: block; width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line, rgba(0,0,0,.1)); background: #fff; }
@@ -477,7 +494,15 @@
 
     </section><section class="bn" style="grid-column: span 5"><h3><span class="cn">06</span>What I'd Do Differently</h3>
     <p>If I were starting this initiative again, I would establish direct recruitment channels with frontline agents before kickoff rather than relying on account-level access, ensuring stronger end-user representation from day one. I would also diversify our vertical mix beyond higher education early on to broaden generalizability. Finally, I would introduce unmoderated testing alongside initial discovery to measure how agents evaluate AI outputs without a facilitator in the room.</p>
-  </section></div></div>
+  </section></div><div class="in case-grid"><section class="bn jtbd" style="grid-column: span 12">
+<h3>Example artifact: Jobs to be done, Retail</h3>
+<p class="muted">One of three industry profiles from Phase A generative research. Customer names are redacted.</p>
+<div class="jt-pages">
+<a href="jtbd-retail.pdf" target="_blank" rel="noopener"><img src="jtbd-retail-1.jpg" alt="Page 1 of the Retail jobs-to-be-done profile: evidence base, actor, industry context, core job and the first two situational jobs, with customer names redacted" loading="lazy"></a>
+<a href="jtbd-retail.pdf" target="_blank" rel="noopener"><img src="jtbd-retail-2.jpg" alt="Page 2 of the Retail jobs-to-be-done profile: situational jobs three and four and a table of functional, emotional and social job dimensions" loading="lazy"></a>
+</div>
+<p class="jt-open"><a class="btn" href="jtbd-retail.pdf" target="_blank" rel="noopener">Open the full PDF <span aria-hidden="true">&rarr;</span></a></p>
+</section></div></div>
 <section class="next"><div class="in"><p class="eyebrow">Keep reading</p><div class="links"><a href="grid-layout.html">Choosing a Layout for an AI Copilot</a><a href="studio-transition.html">Studio Transition: Desktop to Web</a></div></div></section>
 </main>
 <footer class="site"><div class="in foot-row"><a href="mailto:serenayang0@gmail.com">serenayang0@gmail.com</a><span>&copy; 2026 Serena Yang</span></div></footer>
